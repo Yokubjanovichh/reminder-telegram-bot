@@ -18,16 +18,15 @@ MESSAGES = [
 bot = Bot(token=API_TOKEN)
 
 
-async def send_message(chat_ids):
-    print("Message sent")
+async def send_message(chat_ids: str):
     message = choice(MESSAGES)
-    for chat_id in chat_ids:
+    for chat_id in chat_ids.split():
         await bot.send_message(chat_id=chat_id, text=message)
 
 
 async def scheduler():
     while True:
-        schedule.every().day.at(f"20:16").do(
+        schedule.every().day.at(f"20:32").do(
             lambda: asyncio.create_task(send_message(CHAT_IDS))
         )
         while schedule.get_jobs():
@@ -37,7 +36,6 @@ async def scheduler():
 
 
 if __name__ == "__main__":
-    print("Bot run")
     asyncio.run(scheduler())
 
 
