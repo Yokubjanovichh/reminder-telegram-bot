@@ -26,7 +26,7 @@ async def send_message(chat_ids: str):
 
 async def scheduler():
     while True:
-        schedule.every().day.at(f"20:32").do(
+        schedule.every().day.at(f"20:35").do(
             lambda: asyncio.create_task(send_message(CHAT_IDS))
         )
         while schedule.get_jobs():
