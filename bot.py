@@ -1,7 +1,8 @@
 import os
-import random
 import asyncio
-from datetime import datetime
+from random import randint, choice
+
+
 import schedule
 from telegram import Bot
 
@@ -17,23 +18,15 @@ MESSAGES = [
 bot = Bot(token=API_TOKEN)
 
 
-def get_random_time():
-
-    hour = 5
-    minute = 48
-    return f"{hour:02}:{minute:02}"
-
-
 async def send_message(chat_ids):
-    message = random.choice(MESSAGES)
+    message = choice(MESSAGES)
     for chat_id in chat_ids:
         await bot.send_message(chat_id=chat_id, text=message)
 
 
 async def scheduler():
     while True:
-        random_time = get_random_time()
-        schedule.every().day.at(random_time).do(
+        schedule.every().day.at(f"20:10").do(
             lambda: asyncio.create_task(send_message(CHAT_IDS))
         )
         while schedule.get_jobs():
@@ -42,10 +35,8 @@ async def scheduler():
         schedule.clear()
 
 
-async def main():
-    print(datetime.now())
-    await scheduler()
-
-
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(scheduler())
+
+
+# {randint(20, 40)}
