@@ -37,6 +37,3 @@ async def scheduler():
 
 if __name__ == "__main__":
     asyncio.run(scheduler())
-
-
-# {randint(20, 40)}
