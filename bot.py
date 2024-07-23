@@ -1,7 +1,7 @@
 import os
 import random
 import asyncio
-
+from datetime import datetime
 import schedule
 from telegram import Bot
 
@@ -18,6 +18,7 @@ bot = Bot(token=API_TOKEN)
 
 
 def get_random_time():
+
     hour = 5
     minute = 48
     return f"{hour:02}:{minute:02}"
@@ -42,6 +43,7 @@ async def scheduler():
 
 
 async def main():
+    print(datetime.now())
     await scheduler()
 
 
