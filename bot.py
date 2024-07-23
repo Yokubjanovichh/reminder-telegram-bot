@@ -19,7 +19,7 @@ bot = Bot(token=API_TOKEN)
 
 def get_random_time():
     hour = 5
-    minute = 21
+    minute = 45
     return f"{hour:02}:{minute:02}"
 
 
